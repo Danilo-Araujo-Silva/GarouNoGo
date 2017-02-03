@@ -23,6 +23,7 @@ module.exports = function(grunt) {
       files: [
         'assets/**/*',
         'views/**/*',
+        '!views/layout.ejs',
         'tasks/pipeline.js',
         '!**/node_modules/**'
       ],
