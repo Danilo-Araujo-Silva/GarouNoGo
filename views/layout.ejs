@@ -53,7 +53,17 @@
                       + Use a different or additional preprocessor, like SASS, SCSS or Stylus
               */%>
               <!--STYLES-->
-              <link rel="stylesheet" href="/styles/importer.css">
+              <% if (typeof head_css != 'undefined') { %>
+                <%= head_css %>
+              <% } else { %>
+                <% if (typeof head_css_before != 'undefined') { %>
+                  <%= head_css_before %>
+                <% } %>
+                <link rel="stylesheet" href="/styles/importer.css">
+                <% if (typeof head_css_after != 'undefined') { %>
+                  <%= head_css_after %>
+                <% } %>
+              <% } %>
               <!--STYLES END-->
             <% } %>
 
@@ -103,7 +113,6 @@
                         stringfile before they're served.
               */%>
               <!--TEMPLATES-->
-              
               <!--TEMPLATES END-->
             <% } %>
             <% if(typeof body_js !== 'undefined') { %>
@@ -132,7 +141,17 @@
 
               */%>
               <!--SCRIPTS-->
-              <script src="/js/dependencies/sails.io.js"></script>
+              <% if (typeof body_js != 'undefined') { %>
+                <%= body_js %>
+              <% } else { %>
+                <% if (typeof body_js_before != 'undefined') { %>
+                  <%= body_js_before %>
+                <% } %>
+                <script src="/js/dependencies/sails.io.js"></script>
+                <% if (typeof body_js_after != 'undefined') { %>
+                  <%= body_js_after %>
+                <% } %>
+              <% } %>
               <!--SCRIPTS END-->
             <% } %>
           </body>
