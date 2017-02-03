@@ -1,12 +1,17 @@
 <% if(typeof doctype !== 'undefined'){ %>
   <%= doctype %>
 <% } else { %>
-  <!DOCTYPE html>
+  <!doctype html>
 <% } %>
 <% if(typeof external_html !== 'undefined'){ %>
   <%= external_html %>
 <% } else { %>
-  <html>
+  <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+  <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+  <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <html class="no-js" lang="">
+  <!--<![endif]-->
     <% if(typeof html !== 'undefined'){ %>
       <%= html %>
     <% } else { %>
@@ -22,11 +27,19 @@
             <% if (typeof head_meta != 'undefined') { %>
               <%= head_meta %>
             <% } else { %>
-              <%/* Viewport mobile tag for sensible mobile support */%>
+              <meta charset="utf-8">
+              <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+              <meta name="description" content="">
               <meta name="viewport" content="width=device-width, initial-scale=1">
               <% if (typeof head_meta_after != 'undefined') { %>
                 <%= head_meta_after %>
               <% } %>
+            <% } %>
+
+            <% if (typeof head_links != 'undefined') { %>
+              <%= head_links %>
+            <% } else { %>
+              <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
             <% } %>
 
             <% if (typeof head_css != 'undefined') { %>
@@ -53,17 +66,9 @@
                       + Use a different or additional preprocessor, like SASS, SCSS or Stylus
               */%>
               <!--STYLES-->
-              <% if (typeof head_css != 'undefined') { %>
-                <%= head_css %>
-              <% } else { %>
-                <% if (typeof head_css_before != 'undefined') { %>
-                  <%= head_css_before %>
-                <% } %>
-                  <link rel="stylesheet" href="/styles/importer.css">
-                <% if (typeof head_css_after != 'undefined') { %>
-                  <%= head_css_after %>
-                <% } %>
-              <% } %>
+              <link rel="stylesheet" href="/styles/importer.css">
+              <link rel="stylesheet" href="/styles/main.css">
+              <link rel="stylesheet" href="/styles/normalize.css">
               <!--STYLES END-->
             <% } %>
 
@@ -86,6 +91,9 @@
         <%= external_body %>
       <% } else { %>
         <body>
+          <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+          <![endif]-->
           <% if(typeof body !== 'undefined') { %>
             <%- body %>
           <% } else { %>
@@ -113,6 +121,7 @@
                         stringfile before they're served.
               */%>
               <!--TEMPLATES-->
+              
               <!--TEMPLATES END-->
             <% } %>
             <% if(typeof body_js !== 'undefined') { %>
@@ -141,17 +150,19 @@
 
               */%>
               <!--SCRIPTS-->
-              <% if (typeof body_js != 'undefined') { %>
-                <%= body_js %>
-              <% } else { %>
-                <% if (typeof body_js_before != 'undefined') { %>
-                  <%= body_js_before %>
-                <% } %>
-                  <script src="/js/dependencies/sails.io.js"></script>
-                <% if (typeof body_js_after != 'undefined') { %>
-                  <%= body_js_after %>
-                <% } %>
-              <% } %>
+              <script src="/js/dependencies/sails.io.js"></script>
+              <script src="/js/google-analytics.js"></script>
+              <script src="/js/google-analyticss.js"></script>
+              <script src="/js/main.js"></script>
+              <script src="/js/sails/sails.io.js"></script>
+              <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+              <script src="/js/vendor/jquery/1.11.2/jquery-1.11.2.min.js"></script>
+              <script src="/js/vendor/jquery/jquery-1.11.2.min.js"></script>
+              <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+              <script src="/js/vendor/modernizr/2.8.3/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+              <script src="/js/vendor/modernizr/2.8.3/plugins.js"></script>
+              <script src="/js/vendor/modernizr/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+              <script src="/js/vendor/sails/sails.io.js"></script>
               <!--SCRIPTS END-->
             <% } %>
           </body>
